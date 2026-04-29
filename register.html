@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrasi - Tiket Bus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="min-h-screen flex justify-center items-center p-4">
+    <div class="musim-semi-card border-api-biru p-8 rounded-2xl shadow-lg w-full max-w-md">
+        <div class="text-center mb-6">
+            <i class="fa-solid fa-seedling text-blue-400 text-3xl mb-2"></i>
+            <h2 class="text-2xl font-bold text-blue-900">Buat Akun Baru</h2>
+            <p class="text-sm text-blue-600">Bergabunglah untuk memesan tiket</p>
+        </div>
+        
+        <form data-action="Registrasi" action="login.html" class="flex flex-col gap-4">
+            <div>
+                <label class="text-blue-800 font-semibold text-sm">Username</label>
+                <div class="relative">
+                    <i class="fa-solid fa-user absolute left-3 top-3 text-blue-400"></i>
+                    <input type="text" required class="w-full pl-10 pr-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                </div>
+            </div>
+            <div>
+                <label class="text-blue-800 font-semibold text-sm">Email</label>
+                <div class="relative">
+                    <i class="fa-solid fa-envelope absolute left-3 top-3 text-blue-400"></i>
+                    <input type="email" required class="w-full pl-10 pr-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                </div>
+            </div>
+            <button type="submit" class="btn-api-biru text-white py-2 rounded-lg font-bold mt-2 flex items-center justify-center gap-2">
+                Daftar <i class="fa-solid fa-fire text-blue-200"></i>
+            </button>
+        </form>
+        
+        <p class="mt-4 text-center text-sm text-blue-700">Sudah punya akun? <a href="login.html" class="text-blue-600 font-bold hover:underline">Login di sini</a></p>
+        <div class="mt-4 text-center"><a href="index.html" class="text-xs text-blue-500 hover:underline"><i class="fa-solid fa-arrow-left"></i> Kembali</a></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

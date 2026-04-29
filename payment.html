@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Pembayaran - Tiket Bus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="min-h-screen flex justify-center items-center p-4">
+    <div class="musim-semi-card border-api-biru p-8 rounded-2xl shadow-lg w-full max-w-lg">
+        <div class="text-center mb-6">
+            <i class="fa-solid fa-file-invoice-dollar text-blue-500 text-4xl mb-2 api-biru"></i>
+            <h2 class="text-2xl font-bold text-blue-900">Konfirmasi Pembayaran</h2>
+            <p class="text-sm text-blue-600">Selesaikan pembayaran untuk verifikasi admin</p>
+        </div>
+        
+        <div class="bg-blue-50/80 p-4 rounded-lg border border-blue-200 mb-6 text-center">
+            <p class="text-sm text-blue-700">Total Tagihan:</p>
+            <p class="text-3xl font-bold api-biru mb-2">Rp 350.000</p>
+            <p class="text-xs text-blue-500">Transfer ke Rekening BCA: <strong>1234567890</strong> a/n PO Bus Musim Semi</p>
+        </div>
+
+        <form data-action="Upload Bukti Pembayaran" action="index.html" class="flex flex-col gap-4">
+            <div>
+                <label class="text-blue-800 font-semibold text-sm mb-2 block">Upload Bukti Transfer <span class="text-red-500">*</span></label>
+                <div class="border-2 border-dashed border-blue-300 rounded-xl p-6 text-center bg-white hover:bg-blue-50 transition cursor-pointer relative">
+                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-blue-400 mb-2"></i>
+                    <p class="text-sm text-blue-600" id="file-label">Klik atau seret file ke sini</p>
+                    <input type="file" required class="absolute inset-0 w-full h-full cursor-pointer opacity-0" id="upload">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-api-biru text-white py-3 rounded-xl font-bold mt-4 flex justify-center items-center gap-2">
+                Konfirmasi & Kirim <i class="fa-solid fa-check-circle"></i>
+            </button>
+        </form>
+        
+        <div class="mt-4 text-center">
+            <a href="dashboard.html" class="text-sm text-blue-500 hover:underline"><i class="fa-solid fa-xmark"></i> Batalkan & Kembali</a>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // JS Khusus halaman ini agar UI File Upload terlihat reaktif
+        document.getElementById('upload').addEventListener('change', function() {
+            if(this.files && this.files.length > 0) {
+                document.getElementById('file-label').innerText = "File terpilih: " + this.files[0].name;
+                const icon = this.parentElement.querySelector('i');
+                icon.className = 'fa-solid fa-file-circle-check text-3xl mb-2 api-biru';
+            }
+        });
+    </script>
+</body>
+</html>
