@@ -2,55 +2,78 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Pembayaran - Tiket Bus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - Bima Trans</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#dc2626', secondary: '#991b1b' } } } }
+    </script>
 </head>
-<body class="min-h-screen flex justify-center items-center p-4">
-    <div class="musim-semi-card border-api-biru p-8 rounded-2xl shadow-lg w-full max-w-lg">
-        <div class="text-center mb-6">
-            <i class="fa-solid fa-file-invoice-dollar text-blue-500 text-4xl mb-2 api-biru"></i>
-            <h2 class="text-2xl font-bold text-blue-900">Konfirmasi Pembayaran</h2>
-            <p class="text-sm text-blue-600">Selesaikan pembayaran untuk verifikasi admin</p>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-primary text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold"><i class="fa-solid fa-bus mr-2"></i>Bima Trans</h1>
+            <a href="dashboard-user.html" class="text-white hover:text-gray-200"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali</a>
         </div>
-        
-        <div class="bg-blue-50/80 p-4 rounded-lg border border-blue-200 mb-6 text-center">
-            <p class="text-sm text-blue-700">Total Tagihan:</p>
-            <p class="text-3xl font-bold api-biru mb-2">Rp 350.000</p>
-            <p class="text-xs text-blue-500">Transfer ke Rekening BCA: <strong>1234567890</strong> a/n PO Bus Musim Semi</p>
-        </div>
+    </nav>
 
-        <form data-action="Upload Bukti Pembayaran" action="index.html" class="flex flex-col gap-4">
-            <div>
-                <label class="text-blue-800 font-semibold text-sm mb-2 block">Upload Bukti Transfer <span class="text-red-500">*</span></label>
-                <div class="border-2 border-dashed border-blue-300 rounded-xl p-6 text-center bg-white hover:bg-blue-50 transition cursor-pointer relative">
-                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-blue-400 mb-2"></i>
-                    <p class="text-sm text-blue-600" id="file-label">Klik atau seret file ke sini</p>
-                    <input type="file" required class="absolute inset-0 w-full h-full cursor-pointer opacity-0" id="upload">
-                </div>
+    <div class="container mx-auto mt-8 p-4 max-w-3xl">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="bg-gray-800 text-white p-6 text-center">
+                <h2 class="text-2xl font-bold mb-1"><i class="fa-solid fa-file-invoice-dollar mr-2"></i>Selesaikan Pembayaran</h2>
+                <p class="text-sm text-gray-300">Segera upload bukti bayar untuk menghindari pembatalan otomatis (Double Booking Mencegah)</p>
             </div>
             
-            <button type="submit" class="btn-api-biru text-white py-3 rounded-xl font-bold mt-4 flex justify-center items-center gap-2">
-                Konfirmasi & Kirim <i class="fa-solid fa-check-circle"></i>
-            </button>
-        </form>
-        
-        <div class="mt-4 text-center">
-            <a href="dashboard.html" class="text-sm text-blue-500 hover:underline"><i class="fa-solid fa-xmark"></i> Batalkan & Kembali</a>
+            <div class="p-6 md:p-8" id="payment-details">
+                <!-- Data dari LocalStorage masuk kesini via JS -->
+                <div class="border rounded-xl p-4 mb-6 bg-gray-50">
+                    <h3 class="font-bold text-gray-800 mb-4 border-b pb-2">Rincian Pemesanan</h3>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-600">Rute:</span>
+                        <span id="pay-asal-tujuan" class="font-semibold text-gray-800">...</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-600">Tanggal Keberangkatan:</span>
+                        <span id="pay-jadwal" class="font-semibold text-gray-800">...</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-600">Jumlah Penumpang:</span>
+                        <span id="pay-seats" class="font-semibold text-gray-800">...</span>
+                    </div>
+                    <hr class="my-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-bold text-gray-800">Total Tagihan:</span>
+                        <span id="pay-total" class="text-2xl font-bold text-primary">...</span>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <div class="bg-blue-50 border border-blue-200 text-blue-800 rounded-lg p-4 mb-4">
+                        <p class="font-semibold"><i class="fa-solid fa-building-columns mr-2"></i>Transfer ke: BCA 0902118242 (a.n Bima Trans)</p>
+                    </div>
+                </div>
+
+                <form onsubmit="event.preventDefault(); alert('Bukti berhasil diunggah! Menunggu validasi Admin.'); window.location.href='dashboard-user.html';">
+                    <label class="block text-gray-700 font-semibold mb-2">Upload Bukti Pembayaran</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:bg-gray-50 transition cursor-pointer relative">
+                        <input type="file" required accept="image/*" onchange="previewImage(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                        <div class="text-gray-500">
+                            <i class="fa-solid fa-cloud-arrow-up text-4xl mb-2"></i>
+                            <p>Klik atau seret file struk / screenshot ke sini</p>
+                        </div>
+                        <img id="image-preview" class="hidden mx-auto mt-4 max-h-40 rounded shadow">
+                    </div>
+                    
+                    <button type="submit" class="w-full mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 text-lg shadow">
+                        <i class="fa-solid fa-check-circle mr-2"></i> Konfirmasi Pembayaran
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-    
     <script src="script.js"></script>
-    <script>
-        // JS Khusus halaman ini agar UI File Upload terlihat reaktif
-        document.getElementById('upload').addEventListener('change', function() {
-            if(this.files && this.files.length > 0) {
-                document.getElementById('file-label').innerText = "File terpilih: " + this.files[0].name;
-                const icon = this.parentElement.querySelector('i');
-                icon.className = 'fa-solid fa-file-circle-check text-3xl mb-2 api-biru';
-            }
-        });
-    </script>
 </body>
 </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifest Penumpang - Admin Bima Trans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#dc2626', secondary: '#991b1b' } } } }
+    </script>
+</head>
+<body class="bg-gray-100 flex h-screen overflow-hidden">
+
+    <aside class="w-64 bg-gray-900 text-white flex flex-col">
+        <div class="p-6 text-center border-b border-gray-800">
+            <i class="fa-solid fa-bus-simple text-4xl text-primary mb-2"></i>
+            <h2 class="text-xl font-bold">Bima Trans Admin</h2>
+        </div>
+        <nav class="flex-1 p-4">
+            <ul class="space-y-2">
+                <li><a href="dashboard-admin.html" class="block p-3 rounded hover:bg-gray-800 transition"><i class="fa-solid fa-chart-line mr-3"></i>Dashboard</a></li>
+                <li><a href="manage-payments.html" class="block p-3 rounded hover:bg-gray-800 transition"><i class="fa-solid fa-file-invoice-dollar mr-3"></i>Kelola Pembayaran</a></li>
+                <li><a href="manage-routes.html" class="block p-3 rounded hover:bg-gray-800 transition"><i class="fa-solid fa-route mr-3"></i>Kelola Rute</a></li>
+                <li><a href="manage-passengers.html" class="block p-3 rounded bg-primary font-semibold"><i class="fa-solid fa-users mr-3"></i>Manifest Penumpang</a></li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t border-gray-800">
+            <a href="index.html" class="block w-full text-center text-red-400 hover:text-red-300 font-semibold"><i class="fa-solid fa-power-off mr-2"></i>Logout</a>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Manifest Penumpang</h1>
+        <p class="text-gray-500 mb-8">Daftar penumpang resmi yang telah divalidasi pembayarannya.</p>
+
+        <div class="bg-white p-6 rounded-xl shadow mb-8 grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+            <div>
+                <label class="block text-sm font-semibold mb-1 text-gray-600">Pilih Rute</label>
+                <select class="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-primary">
+                    <option>Palembang - Jakarta (08:00)</option>
+                    <option>Jakarta - Bandung (19:30)</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-semibold mb-1 text-gray-600">Pilih Tanggal</label>
+                <input type="date" class="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-primary">
+            </div>
+            <button class="bg-gray-800 text-white py-2 rounded-lg font-bold hover:bg-black transition">
+                <i class="fa-solid fa-print mr-2"></i> Cetak Manifest (PDF)
+            </button>
+        </div>
+
+        <div class="bg-white rounded-xl shadow overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-primary text-white text-sm">
+                        <th class="py-4 px-6 font-semibold">No. Kursi</th>
+                        <th class="py-4 px-6 font-semibold">Nama Penumpang</th>
+                        <th class="py-4 px-6 font-semibold">NIK / Identitas</th>
+                        <th class="py-4 px-6 font-semibold">Kontak</th>
+                        <th class="py-4 px-6 font-semibold">Status Tiket</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr class="border-b">
+                        <td class="py-4 px-6 font-bold">1A</td>
+                        <td class="py-4 px-6">Budi Santoso</td>
+                        <td class="py-4 px-6 font-mono">1671020293040001</td>
+                        <td class="py-4 px-6">0812-3456-7890</td>
+                        <td class="py-4 px-6"><span class="bg-green-100 text-green-700 px-3 py-1 rounded text-xs font-bold uppercase">Paid / Sold</span></td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="py-4 px-6 font-bold">1B</td>
+                        <td class="py-4 px-6">Siti Aminah</td>
+                        <td class="py-4 px-6 font-mono">1671040506070002</td>
+                        <td class="py-4 px-6">0899-2223-1114</td>
+                        <td class="py-4 px-6"><span class="bg-green-100 text-green-700 px-3 py-1 rounded text-xs font-bold uppercase">Paid / Sold</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

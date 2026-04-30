@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan Tiket - Bima Trans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#dc2626', secondary: '#991b1b' } } } }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-primary text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold"><i class="fa-solid fa-bus mr-2"></i>Bima Trans</h1>
+            <div>
+                <span class="mr-4"><i class="fa-regular fa-user-circle mr-1"></i> Halo, Penumpang</span>
+                <a href="index.html" class="bg-white text-primary px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition"><i class="fa-solid fa-sign-out-alt mr-1"></i> Keluar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero & Form -->
+    <div class="container mx-auto mt-8 p-4">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+            <!-- Banner Samping -->
+            <div class="md:w-1/3 bg-cover bg-center p-8 text-white flex flex-col justify-end" style="background-image: linear-gradient(to bottom, rgba(220, 38, 38, 0.2), rgba(153, 27, 27, 0.9)), url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop');">
+                <h2 class="text-3xl font-bold mb-2">Pesan Tiket Mudah</h2>
+                <p>Tanpa antre, pilih kursi favoritmu, dan berangkat dengan nyaman.</p>
+            </div>
+            
+            <!-- Form Pemesanan -->
+            <div class="md:w-2/3 p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Detail Keberangkatan</h3>
+                <form onsubmit="processBooking(event)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2"><i class="fa-solid fa-map-marker-alt text-primary mr-2"></i>Kota Asal</label>
+                            <select id="asal" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary" required>
+                                <option value="" disabled selected>Pilih Asal</option>
+                                <option value="Palembang">Palembang</option>
+                                <option value="Jakarta">Jakarta</option>
+                                <option value="Bandung">Bandung</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2"><i class="fa-solid fa-location-dot text-primary mr-2"></i>Kota Tujuan</label>
+                            <select id="tujuan" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary" required>
+                                <option value="" disabled selected>Pilih Tujuan</option>
+                                <option value="Jakarta">Jakarta</option>
+                                <option value="Palembang">Palembang</option>
+                                <option value="Bandung">Bandung</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2"><i class="fa-regular fa-calendar-alt text-primary mr-2"></i>Jadwal Keberangkatan</label>
+                            <input type="date" id="jadwal" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2"><i class="fa-solid fa-chair text-primary mr-2"></i>Jumlah Kursi</label>
+                            <input type="number" id="seats" min="1" max="10" value="1" oninput="calculateTotal()" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary">
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 p-4 rounded-lg mb-6 flex justify-between items-center border border-red-200">
+                        <span class="text-gray-700 font-semibold">Total Harga:</span>
+                        <span id="totalPrice" class="text-2xl font-bold text-primary">Rp 250.000</span>
+                    </div>
+
+                    <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-lg transition duration-300 text-lg shadow-lg">
+                        <i class="fa-solid fa-ticket-alt mr-2"></i> Lanjutkan Pembayaran
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

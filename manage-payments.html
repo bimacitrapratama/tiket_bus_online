@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Pembayaran - Admin Bima Trans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#dc2626', secondary: '#991b1b' } } } }
+    </script>
+</head>
+<body class="bg-gray-100 flex h-screen overflow-hidden">
+
+    <aside class="w-64 bg-gray-900 text-white flex flex-col">
+        <div class="p-6 text-center border-b border-gray-800">
+            <i class="fa-solid fa-bus-simple text-4xl text-primary mb-2"></i>
+            <h2 class="text-xl font-bold">Bima Trans Admin</h2>
+        </div>
+        <nav class="flex-1 p-4">
+            <ul class="space-y-2">
+                <li><a href="dashboard-admin.html" class="block p-3 rounded hover:bg-gray-800 transition"><i class="fa-solid fa-chart-line mr-3"></i>Dashboard</a></li>
+                <li><a href="manage-payments.html" class="block p-3 rounded bg-primary font-semibold"><i class="fa-solid fa-file-invoice-dollar mr-3"></i>Kelola Pembayaran</a></li>
+                <li><a href="manage-routes.html" class="block p-3 rounded hover:bg-gray-800 transition"><i class="fa-solid fa-route mr-3"></i>Kelola Rute</a></li>
+                <li><a href="manage-passengers.html" class="block p-3 rounded hover:bg-gray-800 transition"><i class="fa-solid fa-users mr-3"></i>Manifest Penumpang</a></li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t border-gray-800">
+            <a href="index.html" class="block w-full text-center text-red-400 hover:text-red-300 font-semibold"><i class="fa-solid fa-power-off mr-2"></i>Logout</a>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Manajemen Pembayaran</h1>
+
+        <div class="bg-white rounded-xl shadow overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-800 text-white text-sm">
+                        <th class="py-4 px-6">ID Transaksi</th>
+                        <th class="py-4 px-6">Penumpang</th>
+                        <th class="py-4 px-6">Total</th>
+                        <th class="py-4 px-6">Bukti</th>
+                        <th class="py-4 px-6 text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700 text-sm">
+                    <tr class="border-b">
+                        <td class="py-4 px-6 font-bold text-primary">#TRX-9921</td>
+                        <td class="py-4 px-6">Budi Santoso</td>
+                        <td class="py-4 px-6">Rp 500.000</td>
+                        <td class="py-4 px-6"><a href="#" class="text-blue-500 underline">Lihat Struk</a></td>
+                        <td class="py-4 px-6 text-center">
+                            <button class="bg-green-500 text-white px-3 py-1 rounded mr-2">Validasi</button>
+                            <button class="bg-red-500 text-white px-3 py-1 rounded">Tolak</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

@@ -2,42 +2,94 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Registrasi - Tiket Bus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Akun - Bima Trans</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 
+                        primary: '#dc2626', 
+                        secondary: '#991b1b' 
+                    } 
+                } 
+            } 
+        }
+    </script>
 </head>
-<body class="min-h-screen flex justify-center items-center p-4">
-    <div class="musim-semi-card border-api-biru p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <div class="text-center mb-6">
-            <i class="fa-solid fa-seedling text-blue-400 text-3xl mb-2"></i>
-            <h2 class="text-2xl font-bold text-blue-900">Buat Akun Baru</h2>
-            <p class="text-sm text-blue-600">Bergabunglah untuk memesan tiket</p>
-        </div>
+<body class="h-screen w-full bg-cover bg-center flex items-center justify-center p-4 relative" style="background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop');">
+    
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="relative z-10 w-full max-w-md bg-white p-8 md:p-10 rounded-2xl shadow-2xl">
         
-        <form data-action="Registrasi" action="login.html" class="flex flex-col gap-4">
+        <div class="text-center mb-8">
+            <i class="fa-solid fa-bus text-4xl text-primary mb-3"></i>
+            <h1 class="text-2xl font-bold text-gray-800 mb-1">Buat Akun</h1>
+            <p class="text-gray-500 text-sm">Isi data di bawah untuk bergabung</p>
+        </div>
+
+        <form class="space-y-5" onsubmit="handleRegister(event)">
             <div>
-                <label class="text-blue-800 font-semibold text-sm">Username</label>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap</label>
                 <div class="relative">
-                    <i class="fa-solid fa-user absolute left-3 top-3 text-blue-400"></i>
-                    <input type="text" required class="w-full pl-10 pr-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                    <i class="fa-solid fa-user absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="text" required 
+                        class="w-full border border-gray-300 p-3 pl-12 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition" 
+                        placeholder="Nama sesuai identitas">
                 </div>
             </div>
+
             <div>
-                <label class="text-blue-800 font-semibold text-sm">Email</label>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Email / No. HP</label>
                 <div class="relative">
-                    <i class="fa-solid fa-envelope absolute left-3 top-3 text-blue-400"></i>
-                    <input type="email" required class="w-full pl-10 pr-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                    <i class="fa-solid fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="text" required 
+                        class="w-full border border-gray-300 p-3 pl-12 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition" 
+                        placeholder="Contoh: 0812xxx atau email@gmail.com">
                 </div>
             </div>
-            <button type="submit" class="btn-api-biru text-white py-2 rounded-lg font-bold mt-2 flex items-center justify-center gap-2">
-                Daftar <i class="fa-solid fa-fire text-blue-200"></i>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Buat Password</label>
+                <div class="relative">
+                    <i class="fa-solid fa-lock absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="password" required 
+                        class="w-full border border-gray-300 p-3 pl-12 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition" 
+                        placeholder="Minimal 8 karakter">
+                </div>
+            </div>
+
+            <button type="submit" 
+                class="block w-full bg-primary text-white text-center py-3.5 rounded-xl font-bold shadow-lg shadow-red-500/30 hover:bg-secondary transition-all transform active:scale-95 mt-6">
+                Daftar Sekarang
             </button>
         </form>
-        
-        <p class="mt-4 text-center text-sm text-blue-700">Sudah punya akun? <a href="login.html" class="text-blue-600 font-bold hover:underline">Login di sini</a></p>
-        <div class="mt-4 text-center"><a href="index.html" class="text-xs text-blue-500 hover:underline"><i class="fa-solid fa-arrow-left"></i> Kembali</a></div>
+
+        <div class="mt-8 text-center text-sm text-gray-600">
+            Sudah memiliki akun? 
+            <a href="index.html" class="text-primary font-bold hover:underline transition-colors">Masuk di sini</a>
+        </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            // Efek loading pada tombol
+            const btn = event.target.querySelector('button');
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Memproses...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            setTimeout(() => {
+                alert("Registrasi Berhasil! Silakan masuk menggunakan akun baru Anda.");
+                window.location.href = "index.html"; 
+            }, 1500);
+        }
+    </script>
+
 </body>
 </html>

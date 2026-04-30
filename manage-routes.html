@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Rute - Admin Bima Trans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#dc2626', secondary: '#991b1b' } } } }
+    </script>
+</head>
+<body class="bg-gray-100 flex h-screen overflow-hidden">
+
+    <aside class="w-64 bg-gray-900 text-white flex flex-col">
+        <div class="p-6 text-center border-b border-gray-800">
+            <i class="fa-solid fa-bus-simple text-4xl text-primary mb-2"></i>
+            <h2 class="text-xl font-bold">Bima Trans Admin</h2>
+        </div>
+        <nav class="flex-1 p-4">
+            <ul class="space-y-2">
+                <li><a href="dashboard-admin.html" class="block p-3 rounded hover:bg-gray-800 transition"><i class="fa-solid fa-chart-line mr-3"></i>Dashboard</a></li>
+                <li><a href="manage-payments.html" class="block p-3 rounded hover:bg-gray-800 transition"><i class="fa-solid fa-file-invoice-dollar mr-3"></i>Kelola Pembayaran</a></li>
+                <li><a href="manage-routes.html" class="block p-3 rounded bg-primary font-semibold"><i class="fa-solid fa-route mr-3"></i>Kelola Rute</a></li>
+                <li><a href="manage-passengers.html" class="block p-3 rounded hover:bg-gray-800 transition"><i class="fa-solid fa-users mr-3"></i>Manifest Penumpang</a></li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t border-gray-800">
+            <a href="index.html" class="block w-full text-center text-red-400 hover:text-red-300 font-semibold"><i class="fa-solid fa-power-off mr-2"></i>Logout</a>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto p-8">
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Manajemen Rute & Armada</h1>
+                <p class="text-gray-500">Atur ketersediaan rute, harga tiket, dan jadwal bus.</p>
+            </div>
+            <button onclick="document.getElementById('modal-route').classList.remove('hidden')" class="bg-primary text-white px-6 py-2 rounded-lg font-bold shadow-lg hover:bg-secondary transition">
+                <i class="fa-solid fa-plus mr-2"></i> Tambah Rute Baru
+            </button>
+        </div>
+
+        <div class="bg-white rounded-xl shadow overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-800 text-white text-sm">
+                        <th class="py-4 px-6 font-semibold">Armada (Bus)</th>
+                        <th class="py-4 px-6 font-semibold">Asal</th>
+                        <th class="py-4 px-6 font-semibold">Tujuan</th>
+                        <th class="py-4 px-6 font-semibold">Keberangkatan</th>
+                        <th class="py-4 px-6 font-semibold text-center">Harga</th>
+                        <th class="py-4 px-6 font-semibold text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700 text-sm">
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="py-4 px-6 font-bold text-primary">Bima-01 (Executive)</td>
+                        <td class="py-4 px-6">Palembang</td>
+                        <td class="py-4 px-6">Jakarta</td>
+                        <td class="py-4 px-6 font-mono">08:00 WIB</td>
+                        <td class="py-4 px-6 text-center font-semibold">Rp 250.000</td>
+                        <td class="py-4 px-6 text-center">
+                            <button class="text-blue-500 hover:text-blue-700 mr-3"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="py-4 px-6 font-bold text-primary">Bima-05 (Sleeper)</td>
+                        <td class="py-4 px-6">Bandung</td>
+                        <td class="py-4 px-6">Jakarta</td>
+                        <td class="py-4 px-6 font-mono">19:30 WIB</td>
+                        <td class="py-4 px-6 text-center font-semibold">Rp 150.000</td>
+                        <td class="py-4 px-6 text-center">
+                            <button class="text-blue-500 hover:text-blue-700 mr-3"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div id="modal-route" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl w-full max-w-lg p-8 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">Input Rute Baru</h2>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-sm font-semibold mb-1">Kota Asal</label>
+                    <input type="text" class="w-full border p-2 rounded">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-1">Kota Tujuan</label>
+                    <input type="text" class="w-full border p-2 rounded">
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-semibold mb-1">Jam Keberangkatan</label>
+                <input type="time" class="w-full border p-2 rounded">
+            </div>
+            <div class="mb-6">
+                <label class="block text-sm font-semibold mb-1">Harga Tiket (Rp)</label>
+                <input type="number" class="w-full border p-2 rounded">
+            </div>
+            <div class="flex gap-3">
+                <button onclick="document.getElementById('modal-route').classList.add('hidden')" class="flex-1 bg-gray-200 py-3 rounded-lg font-bold">Batal</button>
+                <button onclick="alert('Rute Berhasil Ditambahkan!'); location.reload();" class="flex-1 bg-primary text-white py-3 rounded-lg font-bold">Simpan Rute</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -3,27 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Ticketing Bus - Home</title>
+    <title>Login - Bima Trans</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#dc2626', secondary: '#991b1b' } } } }
+    </script>
 </head>
-<body class="min-h-screen flex flex-col justify-center items-center text-blue-900">
-    <div class="musim-semi-card border-api-biru p-10 rounded-2xl shadow-xl max-w-2xl text-center relative overflow-hidden">
-        <div class="absolute top-0 right-0 p-4 opacity-30 text-5xl cursor-default">🌸</div>
-        <div class="absolute bottom-0 left-0 p-4 opacity-30 text-5xl cursor-default">🍃</div>
-        
-        <i class="fa-solid fa-fire-flame-curved text-6xl api-biru mb-4"></i>
-        <h1 class="text-4xl font-bold mb-2">Sistem Tiket Bus <span class="api-biru">Online</span></h1>
-        <p class="text-blue-700 mb-8 font-medium">Pesan tiket bus Anda dengan mudah. Nikmati perjalanan di musim semi dengan layanan terbaik kami.</p>
-        
-        <div class="flex gap-4 justify-center relative z-10">
-            <a href="login.html" class="btn-api-biru text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2">
-                <i class="fa-solid fa-right-to-bracket"></i> Login
-            </a>
-            <a href="register.html" class="bg-blue-100 text-blue-800 border-2 border-blue-400 px-6 py-3 rounded-full font-semibold hover:bg-blue-200 transition flex items-center gap-2">
-                <i class="fa-solid fa-user-plus"></i> Daftar
-            </a>
+<body class="h-screen w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop');">
+    <!-- Red Overlay -->
+
+    
+    <div class="relative z-10 flex h-full items-center justify-center p-4">
+        <div class="glass-panel p-8 rounded-2xl shadow-2xl w-full max-w-md">
+            <div class="text-center mb-8">
+                <i class="fa-solid fa-bus text-5xl text-primary mb-3"></i>
+                <h1 class="text-3xl font-bold text-gray-800">Bima Trans</h1>
+                <p class="text-gray-500">Tiket Bus Online</p>
+            </div>
+
+            <form onsubmit="handleLogin(event)">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2"><i class="fa-solid fa-user mr-2"></i>Username</label>
+                    <input type="text" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2"><i class="fa-solid fa-lock mr-2"></i>Password</label>
+                    <input type="password" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-semibold mb-2"><i class="fa-solid fa-users-cog mr-2"></i>Login Sebagai</label>
+                    <select id="role" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary">
+                        <option value="user">Penumpang (User)</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                    Masuk Sekarang <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </form>
+            <div class="mt-6 text-center text-sm text-gray-500">
+    Belum punya akun? <a href="register.html" class="text-primary font-bold hover:underline">Daftar Sekarang</a>
+</div>
+
         </div>
     </div>
     <script src="script.js"></script>
