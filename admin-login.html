@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Bima Trans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 
+                        primary: '#dc2626', 
+                        secondary: '#991b1b' 
+                    } 
+                } 
+            } 
+        }
+    </script>
+</head>
+<body class="h-screen w-full bg-cover bg-center flex items-center justify-center p-4 relative font-sans" style="background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop');">
+    
+    <div class="absolute inset-0 bg-gray-900/60 backdrop-blur-sm"></div>
+
+    <div class="relative z-10 w-full max-w-[420px] bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.4)] overflow-hidden">
+        
+        <div class="h-32 bg-gradient-to-r from-primary to-secondary relative flex justify-center">
+            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 20px 20px;"></div>
+            
+            <div class="absolute -bottom-10 w-20 h-20 bg-white rounded-full p-2 shadow-lg flex items-center justify-center border border-gray-100">
+                <div class="w-full h-full bg-red-50 rounded-full flex items-center justify-center text-primary">
+                    <i class="fa-solid fa-user-shield text-3xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-8 pt-14 pb-8">
+            <div class="text-center mb-8">
+                <h1 class="text-2xl font-extrabold text-gray-800 tracking-tight">Portal Admin</h1>
+                <p class="text-gray-500 text-sm mt-1">Masuk untuk mengelola sistem Bima Trans</p>
+            </div>
+
+            <form class="space-y-5" onsubmit="handleAdminLogin(event)">
+                <div class="space-y-4">
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-id-badge text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                        </div>
+                        <input type="text" required 
+                            class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-primary focus:border-primary block pl-11 p-3.5 transition-all outline-none" 
+                            placeholder="ID Administrator">
+                    </div>
+
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-key text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                        </div>
+                        <input type="password" required 
+                            class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-primary focus:border-primary block pl-11 p-3.5 transition-all outline-none" 
+                            placeholder="Kata Sandi Sistem">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-sm mt-2 mb-2">
+                    <label class="flex items-center text-gray-600 cursor-pointer hover:text-gray-800 transition-colors">
+                        <input type="checkbox" class="rounded border-gray-300 text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 w-4 h-4 mr-2 cursor-pointer">
+                        Ingat sesi saya
+                    </label>
+                </div>
+
+                <button type="submit" 
+                    class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl text-[15px] px-5 py-4 text-center shadow-lg shadow-red-500/30 hover:shadow-red-500/50 hover:-translate-y-0.5 transition-all duration-200 mt-2">
+                    Otorisasi Masuk
+                </button>
+            </form>
+        </div>
+        
+        
+
+    <script>
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const btn = event.target.querySelector('button');
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Memproses...';
+            btn.disabled = true;
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+
+            setTimeout(() => {
+                window.location.href = "dashboard-admin.html"; 
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
